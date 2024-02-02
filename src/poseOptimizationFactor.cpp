@@ -31,7 +31,7 @@ bool PoseParameterization::Plus(const double *x, const double *delta, double *x_
     return true;
 }
 
-bool PoseParameterization::ComputeJacobian(const double *x, double *jacobian) const {
+bool PoseParameterization::PlusJacobian(const double *x, double *jacobian) const {
     Eigen::Map<Eigen::Matrix<double, 15, 15, Eigen::RowMajor>> j(jacobian);
     j.setIdentity();
     return true;
@@ -68,8 +68,28 @@ bool ConstantPoseParameterization::Plus(const double *x, const double *delta, do
     return true;
 }
 
-bool ConstantPoseParameterization::ComputeJacobian(const double *x, double *jacobian) const {
+bool ConstantPoseParameterization::PlusJacobian(const double *x, double *jacobian) const {
     Eigen::Map<Eigen::Matrix<double, 15, 15, Eigen::RowMajor>> j(jacobian);
     j.setIdentity();
+    return true;
+}
+
+bool PoseParameterization::Minus(const double *y, const double *x, double *y_minus_x) const {
+
+    return true;
+}
+
+bool PoseParameterization::MinusJacobian(const double *x, double *jacobian) const {
+
+    return true;
+}
+
+bool ConstantPoseParameterization::Minus(const double *y, const double *x, double *y_minus_x) const {
+
+    return true;
+}
+
+bool ConstantPoseParameterization::MinusJacobian(const double *x, double *jacobian) const {
+
     return true;
 }

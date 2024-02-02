@@ -39,8 +39,15 @@ Ubuntu 64-bit 18.04.
 
 ROS Melodic. [ROS Installation](http://wiki.ros.org/ROS/Installation)
 
+New: 
+- Tested with Ubuntu 20.04. 
+- ROS Noetic.
+
 ### 2.2. **Ceres Solver**
 Follow [Ceres Installation](http://ceres-solver.org/installation.html).
+
+New: 
+- In this repo, we modified part of the optimization code to satisfy the Ceres Solver 2.2.0.
 
 ### 2.3. **PCL**
 Follow [PCL Installation](http://www.pointclouds.org/downloads/linux.html).
