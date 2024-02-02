@@ -11,7 +11,7 @@ A summary video demo can be found at [Video](https://youtu.be/Uy_2MKwUDN8)
 
 **Modifier:** [Wang Han](http://wanghan.pro), Nanyang Technological University, Singapore
 
-New:
+**New:**
 - Since the old Ceres version could not be compiled in this code, we rewrote the code to cater for the Ceres Solver 2.2.0.
 
 ## 1. Solid-State Lidar Sensor Example
@@ -42,14 +42,14 @@ Ubuntu 64-bit 18.04.
 
 ROS Melodic. [ROS Installation](http://wiki.ros.org/ROS/Installation)
 
-New: 
+**New:**
 - Tested with Ubuntu 20.04. 
 - ROS Noetic.
 
 ### 2.2. **Ceres Solver**
 Follow [Ceres Installation](http://ceres-solver.org/installation.html).
 
-New: 
+**New:**
 - In this repo, we modified part of the optimization code to satisfy the Ceres Solver 2.2.0.
 
 ### 2.3. **PCL**
