@@ -11,6 +11,9 @@ A summary video demo can be found at [Video](https://youtu.be/Uy_2MKwUDN8)
 
 **Modifier:** [Wang Han](http://wanghan.pro), Nanyang Technological University, Singapore
 
+New:
+- Since the old Ceres version could not be compiled in this code, we rewrote the code to cater for the Ceres Solver 2.2.0.
+
 ## 1. Solid-State Lidar Sensor Example
 ### 1.1 Scene reconstruction
 <p align='center'>
