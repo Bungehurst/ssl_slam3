@@ -273,7 +273,7 @@ void OdomEstimationClass::optimize(void){
 
         for(int i = start_id; i <= end_id; i++){
             const int pose_id = i - start_id;
-            if(pose_id == 0)
+            if(pose_id == 0) // if not initialized, use constant pose and imu vel to optimize.
                 problem.AddParameterBlock(pose[pose_id], 15, new ConstantPoseParameterization()); 
             else
                 problem.AddParameterBlock(pose[pose_id], 15, new PoseParameterization()); 
