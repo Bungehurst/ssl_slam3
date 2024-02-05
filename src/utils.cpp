@@ -58,7 +58,7 @@ Eigen::Vector3d Utils::qToso3(const Eigen::Quaterniond& q){
 
 Eigen::Matrix3d Utils::Jl_so3(const Eigen::Vector3d& so3){
     double theta = so3.norm();
-    if(theta<THETA_THRESHOLD){
+    if(fabs(theta)<THETA_THRESHOLD){
         return Eigen::Matrix3d::Identity() + skew(so3) / 2; 
     }else{
         Eigen::Vector3d u = so3.normalized();
@@ -68,27 +68,27 @@ Eigen::Matrix3d Utils::Jl_so3(const Eigen::Vector3d& so3){
 
 Eigen::Matrix3d Utils::Jl_so3_inv(const Eigen::Vector3d& so3){
     double theta = so3.norm();
-    if(theta<THETA_THRESHOLD){
+    if(fabs(theta)<THETA_THRESHOLD){
         return cos(theta/2) * Eigen::Matrix3d::Identity() + 0.125 * so3 * so3.transpose() - 0.5 * skew(so3); 
     }else{
         Eigen::Vector3d u = so3.normalized();
         return 0.5 * theta / tan(theta/2) * Eigen::Matrix3d::Identity() + (1 - 0.5 * theta/tan(theta/2))*u*u.transpose() - 0.5 * skew(so3); 
     } 
 }
-
-Eigen::Matrix3d Utils::Jr_so3(const Eigen::Vector3d& so3){
-    double theta = so3.norm();
-    if(theta<THETA_THRESHOLD){
+// the origin is wrong, modified from left jacobian to right jacobian
+Eigen::Matrix3d Utils::Jr_so3(const Eigen::Vector3d& so3){ 
+    double theta = -so3.norm(); 
+    if(fabs(theta)<THETA_THRESHOLD){
         return Eigen::Matrix3d::Identity() - 0.5 * skew(so3); 
     }else{
         Eigen::Vector3d u = so3.normalized();
         return sin(theta)/theta * Eigen::Matrix3d::Identity() + (1 - sin(theta)/theta)*u*u.transpose() - (1 - cos(theta))/theta * skew(u); 
     } 
 }
-
-Eigen::Matrix3d Utils::Jr_so3_inv(const Eigen::Vector3d& so3){
-    double theta = so3.norm();
-    if(theta<THETA_THRESHOLD){
+// the origin is wrong, modified from left jacobian to right jacobian
+Eigen::Matrix3d Utils::Jr_so3_inv(const Eigen::Vector3d& so3){ 
+    double theta = -so3.norm();
+    if(fabs(theta)<THETA_THRESHOLD){
         return cos(theta/2) * Eigen::Matrix3d::Identity() + 0.125 * so3 * so3.transpose() +  0.5 * skew(so3); 
     }else{
         Eigen::Vector3d u = so3.normalized();
