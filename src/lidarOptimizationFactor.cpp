@@ -22,7 +22,7 @@ bool LidarOdometryFactor::Evaluate(double const *const *parameters, double *resi
 
     Eigen::Map<Eigen::Matrix<double, 6, 1>> residual(residuals);
 
-    Eigen::Vector3d so3 = Utils::RToso3(Rij.transpose() * Ri.transpose() * Rj);
+    Eigen::Vector3d so3 = Utils::RToso3(Rij.transpose() * (Ri.transpose() * Rj));
     residual.block<3, 1>(0, 0) = so3;
     residual.block<3, 1>(3, 0) = Rij.transpose() * ( Ri.transpose() * (Pj - Pi)- Pij);
     residual = sqrt_info * residual;

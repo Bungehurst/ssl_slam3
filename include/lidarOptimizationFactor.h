@@ -14,7 +14,9 @@
 class LidarOdometryFactor : public ceres::SizedCostFunction<6, 15, 15>{
 public:
     LidarOdometryFactor(Eigen::Isometry3d odom_in, Eigen::Matrix<double, 6, 1> covariance_in);
+	virtual ~LidarOdometryFactor() {}
     virtual bool Evaluate(double const *const *parameters, double *residuals, double **jacobians) const;
+	
     Eigen::Isometry3d odom;
     Eigen::Matrix<double, 6, 6> sqrt_info;
 };
