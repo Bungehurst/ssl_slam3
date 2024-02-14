@@ -77,22 +77,24 @@ Eigen::Matrix3d Utils::Jl_so3_inv(const Eigen::Vector3d& so3){
 }
 
 Eigen::Matrix3d Utils::Jr_so3(const Eigen::Vector3d& so3){ 
-    double theta = -so3.norm(); 
-    Eigen::Vector3d u = so3.normalized();
+    double theta = so3.norm(); 
+    // Eigen::Vector3d u = so3.normalized();
     if(fabs(theta)<THETA_THRESHOLD){
-        return Eigen::Matrix3d::Identity() + 0.5 * theta * skew(u); 
+        return Eigen::Matrix3d::Identity() - 0.5 * skew(so3); 
     }else{
-        return sin(theta)/theta * Eigen::Matrix3d::Identity() + (1 - sin(theta)/theta)*u*u.transpose() + (1 - cos(theta))/theta * skew(u); 
+        // return sin(theta)/theta * Eigen::Matrix3d::Identity() + (1 - sin(theta)/theta)*u*u.transpose() + (1 - cos(theta))/theta * skew(u); 
+        return Eigen::Matrix3d::Identity() - ((1-cos(theta))/(theta*theta))*skew(so3) + ((theta-sin(theta))/pow(theta,3))*skew(so3)*skew(so3);
     } 
 }
 
 Eigen::Matrix3d Utils::Jr_so3_inv(const Eigen::Vector3d& so3){ 
-    double theta = -so3.norm();
-    Eigen::Vector3d u = so3.normalized();
-    if(fabs(theta)<THETA_THRESHOLD){
-        return cos(theta/2) * Eigen::Matrix3d::Identity() + 0.125 * so3 * so3.transpose() -  0.5 * theta * skew(u); 
+    double theta = so3.norm();
+    // Eigen::Vector3d u = so3.normalized();
+    if(theta<THETA_THRESHOLD){
+        return Eigen::Matrix3d::Identity() +  0.5 * skew(so3); 
     }else{
-        return 0.5 * theta / tan(theta/2) * Eigen::Matrix3d::Identity() + (1 - 0.5 * theta / tan(theta/2))*u*u.transpose() - 0.5 * theta * skew(u); 
+        // return 0.5 * theta / tan(theta/2) * Eigen::Matrix3d::Identity() + (1 - 0.5 * theta / tan(theta/2))*u*u.transpose() + 0.5 * theta * skew(u); 
+        return Eigen::Matrix3d::Identity() + 0.5 * skew(so3) + (1/pow(theta,2)-(1+cos(theta))/(2*theta*sin(theta)))*skew(so3)*skew(so3);
     } 
 }
 

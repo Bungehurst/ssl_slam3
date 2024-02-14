@@ -16,7 +16,7 @@ common:
               0.0, 0.0, 0.0, 1.0]
 
 lidar:  
-    frequency: 16 
+    frequency: 15 
     min_distance: 0.2           
     max_distance: 8.0                               
     horizontal_angle: 70.0
@@ -40,8 +40,8 @@ imu:
     # note that we follow the value unit from kalibr  link:https://github.com/ethz-asl/kalibr/wiki/IMU-Noise-Model
     # if you use imu_utils, the result is in discrete time, you can simply set frequency to 1
     frequency: 100
-    acc_n: 0.00105 # 1.176e-2m/s^2 * 1/sqrt(Hz) continuous time
-    gyr_n: 0.00015 # 2.443e-3rad/s * 1/sqrt(Hz) continuous time
-    acc_w: 2.232e-05 # m/s^3 * 1/sqrt(Hz) continuous time
-    gyr_w: 2.653e-06 # rad/s^2 * 1/sqrt(Hz) continuous time
+    acc_n: 0.00105285 # 1.176e-2m/s^2 * 1/sqrt(Hz) continuous time
+    gyr_n: 0.00015043 # 2.443e-3rad/s * 1/sqrt(Hz) continuous time
+    acc_w: 2.23245e-05 # m/s^3 * 1/sqrt(Hz) continuous time
+    gyr_w: 2.653179e-06 # rad/s^2 * 1/sqrt(Hz) continuous time
 

@@ -24,6 +24,7 @@ bool PoseParameterization::Plus(const double *x, const double *delta, double *x_
     Eigen::Map<Eigen::Vector3d> b_g_new(x_plus_delta + 12);
 
     rot_new = rot + Utils::Jr_so3_inv(rot) * delta_rot;
+    // rot_new = rot + Utils::Jl_so3(rot) * delta_rot;
     pos_new = pos + delta_pos;
     vel_new = vel + delta_vel;
     b_a_new = b_a + delta_b_a;
